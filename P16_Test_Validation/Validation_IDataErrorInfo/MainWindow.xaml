@@ -1,0 +1,130 @@
+﻿<Window x:Class="Validation_IDataErrorInfo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Validation_IDataErrorInfo"
+        mc:Ignorable="d"
+        Title="Validierung mit IDataErrorInfo"
+        Height="350"
+        Width="525">
+    <Window.Resources>
+        <!--Style for displaying an error message from validation as tooltip.
+            Unfortunately the tooltip is overwritten by the tooltip of the textbox.-->
+        <!--<Style x:Key="{x:Type TextBox}"
+               TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding Path=(Validation.Errors).CurrentItem.ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
+                    <Setter Property="Background"
+                            Value="LightPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+        
+        <!--Style for displaying an error message from validation as tooltip.
+            In that case the tooltip don't belong to the textbox itself but to an image on the right side.
+            So its not overwritten by the tooltip of the textbox.-->
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+            <Setter Property="Margin"
+                    Value="0,2,40,2"/>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Red"
+                                    DockPanel.Dock="right"
+                                    Margin="5,0,0,0"
+                                    Width="20"
+                                    Height="20"
+                                    CornerRadius="10"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Bold"
+                                           Foreground="White">
+                                </TextBlock>
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner"
+                                                       VerticalAlignment="Center" >
+                                <Border BorderBrush="Red"
+                                        BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--Additional style trigger for changing the background color of the textbox-->
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="Background"
+                            Value="LightPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Margin="5">First name</Label>
+
+        <!--Input field for the first name-->
+        <TextBox x:Name="tbx_firstname"
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5"
+                 ToolTip="The first name"
+                 Text="{Binding FirstName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+            <!--That ErrorTemplate displays one error message below the textbox-->
+            <!--<Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="firstname_errorcontent"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>-->
+        </TextBox>
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Margin="5">Last name</Label>
+
+        <!--Input field for the last name-->
+        <TextBox x:Name="tbx_lastname"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="5"
+                 ToolTip="The last name"
+                 Text="{Binding LastName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+            <!--That ErrorTemplate displays one error message below the textbox-->
+            <!--<Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="firstname_errorcontent"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>-->
+        </TextBox>
+    </Grid>
+</Window>
