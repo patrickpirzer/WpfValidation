@@ -32,10 +32,6 @@
             In that case the tooltip don't belong to the textbox itself but to an image on the right side.
             So its not overwritten by the tooltip of the textbox.-->
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="VerticalAlignment"
-                    Value="Center"/>
-            <Setter Property="Margin"
-                    Value="0,2,40,2"/>
             <Setter Property="Height"
                     Value="25"/>
             <Setter Property="VerticalAlignment"
