@@ -1,11 +1,11 @@
-﻿<Window x:Class="Validation_IDataErrorInfo.MainWindow"
+﻿<Window x:Class="Validation_DataAnnotations.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Validation_IDataErrorInfo"
+        xmlns:local="clr-namespace:Validation_DataAnnotations"
         mc:Ignorable="d"
-        Title="Validation with IDataErrorInfo"
+        Title="Validation with DataAnnotations"
         Height="350"
         Width="525">
     <Window.Resources>
@@ -114,7 +114,7 @@
         <Style TargetType="CheckBox" BasedOn="{StaticResource myErrorTemplate}" />
         <Style TargetType="ComboBox" BasedOn="{StaticResource myErrorTemplate}" />-->
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

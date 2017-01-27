@@ -42,9 +42,9 @@
                         <DockPanel LastChildFill="true">
                             <Border Background="Red"
                                     DockPanel.Dock="right"
-                                    Margin="5,0,0,0"
-                                    Width="20"
-                                    Height="20"
+                                    Margin="-20,0,0,0"
+                                    Width="15"
+                                    Height="15"
                                     CornerRadius="10"
                                     ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
                                 <TextBlock Text="!"
@@ -72,6 +72,51 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!--<Style x:Key="myErrorTemplate" TargetType="Control">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="True">
+                            <Ellipse DockPanel.Dock="Right"
+                                     ToolTip="{Binding ElementName=myTextbox, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                                     Width="15"
+                                     Height="15"
+                                     Margin="-25,0,0,0"
+                                     StrokeThickness="1"
+                                     Fill="Red">
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FFFA0404" Offset="0"/>
+                                        <GradientStop Color="#FFC9C7C7" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <TextBlock DockPanel.Dock="Right"
+                                       ToolTip="{Binding ElementName=myControl, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                                       Foreground="White"
+                                       FontSize="11pt"
+                                       Margin="-15,5,0,0"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                            <Border BorderBrush="Red" BorderThickness="1">
+                                <AdornedElementPlaceholder Name="myControl"/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                    Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                    Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource myErrorTemplate}" />
+        <Style TargetType="CheckBox" BasedOn="{StaticResource myErrorTemplate}" />
+        <Style TargetType="ComboBox" BasedOn="{StaticResource myErrorTemplate}" />-->
     </Window.Resources>
 
     <Grid>
@@ -108,7 +153,7 @@
 
         <TextBlock Grid.Row="0"
                    Grid.Column="2"
-                   Margin="40,5,5,5"
+                   Margin="5"
                    TextWrapping="WrapWithOverflow">
             Validation by binding to a specialized ValidationRule-class. In that case the user has to input a valid number.
         </TextBlock>
@@ -135,7 +180,7 @@
 
         <TextBlock Grid.Row="1"
                    Grid.Column="2"
-                   Margin="40,5,5,5"
+                   Margin="5"
                    TextWrapping="WrapWithOverflow">
             Validation by binding to two specialized ValidationRule-classes. In that case the user has to input a valid number, which lies between the defined borders 21 and 130.
         </TextBlock>
@@ -162,7 +207,7 @@
 
         <TextBlock Grid.Row="2"
                    Grid.Column="2"
-                   Margin="40,5,5,5"
+                   Margin="5"
                    TextWrapping="WrapWithOverflow">
             Validation by binding to two specialized ValidationRule-classes. In that case the user has to input a name.
         </TextBlock>

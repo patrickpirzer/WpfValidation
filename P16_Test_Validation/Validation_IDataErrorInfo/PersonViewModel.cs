@@ -16,14 +16,14 @@ namespace Validation_IDataErrorInfo
         public event PropertyChangedEventHandler PropertyChanged;
 
         //[Required(ErrorMessage ="You must input the first name")]
-        [Required(AllowEmptyStrings = false)]
+        //[Required(AllowEmptyStrings = false)]
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
         public string FirstName { get; set; }
 
         //[Required(ErrorMessage = "You must input the last name")]
-        [Required(AllowEmptyStrings = false)]
+        //[Required(AllowEmptyStrings = false)]
         /// <summary>
         /// Gets or sets the last name.
         /// </summary>
