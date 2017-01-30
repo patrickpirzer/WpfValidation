@@ -1,29 +1,33 @@
 ﻿using System;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Validation_IDataErrorInfo
 {
     /// <summary>
-    /// http://stackoverflow.com/questions/22361803/data-annotations-idataerrorinfo-and-mvvm
     /// https://blog.magnusmontin.net/2013/08/26/data-validation-in-wpf/
+    /// Interessant:
+    /// http://stackoverflow.com/questions/6530529/enable-disable-save-button-during-validation-using-idataerrorinfo
     /// </summary>
     public class PersonViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
+        /// <summary>
+        /// Field for a string array containing the names of the properties to validate.
+        /// </summary>
+        private readonly string[] ValidateProperties =
+        {
+            "FirstName", "LastName"
+        };
+
         /// <summary>
         /// Eventhandler for signalising that a property has changed.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //[Required(ErrorMessage ="You must input the first name")]
-        //[Required(AllowEmptyStrings = false)]
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
         public string FirstName { get; set; }
 
-        //[Required(ErrorMessage = "You must input the last name")]
-        //[Required(AllowEmptyStrings = false)]
         /// <summary>
         /// Gets or sets the last name.
         /// </summary>
@@ -39,6 +43,9 @@ namespace Validation_IDataErrorInfo
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// ???
+        /// </summary>
         public string Error
         {
             get
@@ -47,48 +54,81 @@ namespace Validation_IDataErrorInfo
             }
         }
 
-        public string this[string columnName]
+        /// <summary>
+        /// Validates the property with the given name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to validate.</param>
+        /// <returns>
+        /// If successful the method returns string.empty. Otherwise it returns an error message.
+        /// </returns>
+        public string this[string propertyName]
         {
             get
             {
-                ////return OnValidate(columnName);
-                switch (columnName)
-                {
-                    case "FirstName":
-                        if (string.IsNullOrWhiteSpace(FirstName))
-                            return "Please insert the first name";
-                        break;
-                    case "LastName":
-                        if (string.IsNullOrWhiteSpace(LastName))
-                            return "Please insert the last name";
-                        break;
-                }
+                //return OnValidate(propertyName);
 
-                return string.Empty;
+                // New version.
+                // Each change in the input fields causes a refresh of the property CanSave.
+                // And there is no need to code the properties for validation explicitly - inclusive RaisePropertyChanged of CanSave.
+                string result = OnValidate(propertyName);
+                RaisePropertyChanged("CanSave");
+                return result;
             }
         }
 
-        ////protected virtual string OnValidate(string propertyName)
-        ////{
-        ////    if (string.IsNullOrEmpty(propertyName))
-        ////        throw new ArgumentException("Property may not be null or empty", propertyName);
+        /// <summary>
+        /// Gets if all data is valid.
+        /// </summary>
+        public bool IsValid
+        {
+            get
+            {
+                foreach (string property in ValidateProperties)
+                {
+                    if (!string.IsNullOrWhiteSpace(OnValidate(property)))
+                    {
+                        // There is an error
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
 
-        ////    string error = string.Empty;
+        /// <summary>
+        /// Gets if the data can be saved.
+        /// </summary>
+        public bool CanSave
+        {
+            get
+            {
+                return IsValid;
+            }
+        }
 
-        ////    var value = this.GetType().GetProperty(propertyName).GetValue(this, null);
-        ////    var results = new List<ValidationResult>();
+        /// <summary>
+        /// Validates the given data.
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <returns>
+        /// If successful the method returns string.empty. Otherwise it returns an error message.
+        /// </returns>
+        private string OnValidate(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case "FirstName":
+                    if (string.IsNullOrWhiteSpace(FirstName))
+                        return "Please insert the first name";
+                    break;
+                case "LastName":
+                    if (string.IsNullOrWhiteSpace(LastName))
+                        return "Please insert the last name";
+                    break;
+            }
 
-        ////    var context = new ValidationContext(this, null, null) { MemberName = propertyName };
-
-        ////    var result = Validator.TryValidateProperty(value, context, results);
-
-        ////    if (!result)
-        ////    {
-        ////        var validationResult = results.First();
-        ////        error = validationResult.ErrorMessage;
-        ////    }
-        ////    return error;
-        ////}
+            return string.Empty;
+        }
 
     }
 }

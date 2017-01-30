@@ -3,8 +3,10 @@
 namespace Validation_DataAnnotations
 {
     /// <summary>
+    /// Example for implementation in MVVM:
     /// https://social.technet.microsoft.com/wiki/contents/articles/22660.data-validation-in-mvvm.aspx
     /// https://code.msdn.microsoft.com/windowsdesktop/Validation-in-MVVM-using-12dafef3
+    /// Existing Data-Annotations:
     /// https://msdn.microsoft.com/en-us/library/cc490428.aspx
     /// http://www.c-sharpcorner.com/UploadFile/af66b7/data-annotations-for-mvc/
     /// </summary>
@@ -30,7 +32,7 @@ namespace Validation_DataAnnotations
             set { SetValue(() => LastName, value); }
         }
 
-        [RegularExpression(@"^[0-9]{1,3}$", ErrorMessage = "Please enter a valid number")]
+        //[RegularExpression(@"^[0-9]{1,3}$", ErrorMessage = "Please enter a valid number")]
         [Range(1, 100, ErrorMessage = "Age should be between 1 to 100")]
         /// <summary>
         /// Gets or sets the age.

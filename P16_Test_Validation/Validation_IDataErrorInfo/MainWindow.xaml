@@ -124,6 +124,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -170,5 +171,17 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>-->
         </TextBox>
+
+        <Button x:Name="btn_test"
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="5"
+                Click="btn_test_Click">Test</Button>
+
+        <Button x:Name="btn_save"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="5"
+                IsEnabled="{Binding CanSave, NotifyOnSourceUpdated=True, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">Save</Button>
     </Grid>
 </Window>

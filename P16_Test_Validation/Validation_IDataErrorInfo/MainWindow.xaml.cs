@@ -28,5 +28,10 @@ namespace Validation_IDataErrorInfo
             DataContext = pvm;
         }
 
+        private void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

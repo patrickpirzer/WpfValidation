@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Validation_DataAnnotations"
+        xmlns:validations="clr-namespace:Validation_DataAnnotations.ValidationRules"
         mc:Ignorable="d"
         Title="Validation with DataAnnotations"
         Height="350"
@@ -184,5 +185,24 @@
                  ToolTip="The age"
                  Text="{Binding Age, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
         </TextBox>
+        <!--<TextBox x:Name="tbx_age"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5"
+                 ToolTip="The age">
+            <TextBox.Text>
+                <Binding Path="Age" NotifyOnSourceUpdated="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validations:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>-->
+
+        <Button x:Name="btn_test"
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="5"
+                Click="btn_test_Click">Test</Button>
     </Grid>
 </Window>
