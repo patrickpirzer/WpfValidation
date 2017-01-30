@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Validation_DataAnnotations
 {
     /// <summary>
     /// https://social.technet.microsoft.com/wiki/contents/articles/22660.data-validation-in-mvvm.aspx
+    /// https://code.msdn.microsoft.com/windowsdesktop/Validation-in-MVVM-using-12dafef3
+    /// https://msdn.microsoft.com/en-us/library/cc490428.aspx
+    /// http://www.c-sharpcorner.com/UploadFile/af66b7/data-annotations-for-mvc/
     /// </summary>
     public class PersonViewModel : PropertyChangedNotification
     {
@@ -26,6 +28,17 @@ namespace Validation_DataAnnotations
         {
             get { return GetValue(() => LastName); }
             set { SetValue(() => LastName, value); }
+        }
+
+        [RegularExpression(@"^[0-9]{1,3}$", ErrorMessage = "Please enter a valid number")]
+        [Range(1, 100, ErrorMessage = "Age should be between 1 to 100")]
+        /// <summary>
+        /// Gets or sets the age.
+        /// </summary>
+        public int Age
+        {
+            get { return GetValue(() => Age); }
+            set { SetValue(() => Age, value); }
         }
 
     }

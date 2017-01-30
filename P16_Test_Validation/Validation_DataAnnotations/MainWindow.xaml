@@ -124,6 +124,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -169,6 +170,19 @@
                     </StackPanel>
                 </ControlTemplate>
             </Validation.ErrorTemplate>-->
+        </TextBox>
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Margin="5">Age</Label>
+
+        <!--Input field for the age-->
+        <TextBox x:Name="tbx_age"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5"
+                 ToolTip="The age"
+                 Text="{Binding Age, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
         </TextBox>
     </Grid>
 </Window>
