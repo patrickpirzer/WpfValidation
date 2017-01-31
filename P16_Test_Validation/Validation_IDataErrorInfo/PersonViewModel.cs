@@ -15,7 +15,7 @@ namespace Validation_IDataErrorInfo
         /// </summary>
         private readonly string[] ValidateProperties =
         {
-            "FirstName", "LastName"
+            "FirstName", "LastName", "Age"
         };
 
         /// <summary>
@@ -32,6 +32,11 @@ namespace Validation_IDataErrorInfo
         /// Gets or sets the last name.
         /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the age.
+        /// </summary>
+        public int Age { get; set; }
 
         /// <summary>
         /// Informs the target which is bound to a property, that it's source was changed and that it shall update.
@@ -124,6 +129,10 @@ namespace Validation_IDataErrorInfo
                 case "LastName":
                     if (string.IsNullOrWhiteSpace(LastName))
                         return "Please insert the last name";
+                    break;
+                case "Age":
+                    if (string.IsNullOrWhiteSpace(Age.ToString()))
+                        return "Input a valid number";
                     break;
             }
 
