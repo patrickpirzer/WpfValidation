@@ -18,6 +18,11 @@ namespace Validation_IDataErrorInfo2
         /// </summary>
         public PersonViewModel()
         {
+            // Sets the borders for the age.
+            MinAge = 1;
+            MaxAge = 130;
+
+            // Creates the list with the genders.
             GenderList = new List<string>();
             GenderList.Add("Male");
             GenderList.Add("Female");
@@ -42,6 +47,16 @@ namespace Validation_IDataErrorInfo2
         /// Gets or sets the age.
         /// </summary>
         public int Age { get; set; }
+
+        /// <summary>
+        /// Gets the minimal acceptable age.
+        /// </summary>
+        public int MinAge { get; private set; }
+
+        /// <summary>
+        /// Gets the maximal acceptable age.
+        /// </summary>
+        public int MaxAge { get; private set; }
 
         /// <summary>
         /// Gets the list with the genders.
@@ -109,8 +124,10 @@ namespace Validation_IDataErrorInfo2
                         return "Please insert the last name";
                     break;
                 case "Age":
-                    if (Age < 1)
-                        return "Age cannot be less than one";
+                    //if (Age < 1)
+                    //    return "Age cannot be less than 1";
+                    if (Age < MinAge || Age > MaxAge)
+                        return "Age must be a number between " + MinAge + " and " + MaxAge;
                     break;
                 case "SelectedGender":
                     if (string.IsNullOrWhiteSpace(SelectedGender))

@@ -1,12 +1,11 @@
-﻿<Window x:Class="Validation_IDataErrorInfo2.MainWindow"
+﻿<Window x:Class="Validation_DataAnnotations2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Validation_IDataErrorInfo2"
-        xmlns:vr="clr-namespace:Validation_IDataErrorInfo2.ValidationRules"
+        xmlns:local="clr-namespace:Validation_DataAnnotations2"
         mc:Ignorable="d"
-        Title="Validation with IDataErrorInfo"
+        Title="Validation with DataAnnotations"
         Height="350"
         Width="525">
     <Window.Resources>
@@ -48,7 +47,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <!--Style for controls of type TextBox-->
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource errorTemplate}">
             <Setter Property="Height"
@@ -112,7 +111,7 @@
                  Grid.Column="1"
                  Margin="5"
                  ToolTip="The first name"
-                 Text="{Binding FirstName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                 Text="{Binding FirstName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}">
         </TextBox>
 
         <Label Grid.Row="1"
@@ -125,7 +124,7 @@
                  Grid.Column="1"
                  Margin="5"
                  ToolTip="The last name"
-                 Text="{Binding LastName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                 Text="{Binding LastName, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}">
         </TextBox>
 
         <Label Grid.Row="2"
@@ -133,25 +132,12 @@
                Margin="5">Age</Label>
 
         <!--Input field for the age-->
-        <!--<TextBox x:Name="tbx_age"
-                 Grid.Row="2"
-                 Grid.Column="1"
-                 Margin="5"
-                 ToolTip="The age">
-            <TextBox.Text>
-                <Binding Path="Age" NotifyOnSourceUpdated="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <vr:AgeValidation MinAge="1" ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>-->
         <TextBox x:Name="tbx_age"
                  Grid.Row="2"
                  Grid.Column="1"
                  Margin="5"
                  ToolTip="The age"
-                 Text="{Binding Age, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                 Text="{Binding Age, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
 
         <Label Grid.Row="3"
                Grid.Column="0"
@@ -163,7 +149,7 @@
                   Grid.Column="1"
                   Margin="5"
                   ItemsSource="{Binding GenderList}"
-                  SelectedValue="{Binding SelectedGender, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                  SelectedValue="{Binding SelectedGender, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}">
         </ComboBox>
 
         <!--The save-button-->

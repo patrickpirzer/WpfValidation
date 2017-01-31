@@ -1,0 +1,5 @@
+﻿Information about how to implement data annotations:
+https://blog.magnusmontin.net/2013/08/26/data-validation-in-wpf/
+
+The range attribute:
+https://msdn.microsoft.com/de-de/library/system.componentmodel.dataannotations.rangeattribute(v=vs.110).aspx
