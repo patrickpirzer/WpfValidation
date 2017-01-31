@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation_ValidationRule",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation_DataAnnotations", "Validation_DataAnnotations\Validation_DataAnnotations.csproj", "{1E272498-2C83-4268-9B5C-24913D73C1A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation_IDataErrorInfo2", "Validation_IDataErrorInfo2\Validation_IDataErrorInfo2.csproj", "{E88769A2-9CA5-44E6-A38C-01BE3EA832D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1E272498-2C83-4268-9B5C-24913D73C1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E272498-2C83-4268-9B5C-24913D73C1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E272498-2C83-4268-9B5C-24913D73C1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88769A2-9CA5-44E6-A38C-01BE3EA832D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88769A2-9CA5-44E6-A38C-01BE3EA832D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88769A2-9CA5-44E6-A38C-01BE3EA832D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88769A2-9CA5-44E6-A38C-01BE3EA832D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
